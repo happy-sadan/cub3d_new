@@ -6,13 +6,15 @@
 #    By: trcottam <trcottam@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 21:37:31 by trcottam          #+#    #+#              #
-#    Updated: 2021/01/04 02:59:32 by trcottam         ###   ########.fr        #
+#    Updated: 2021/01/04 03:07:14 by trcottam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Cub3D
 
-SRC =	main.c\
+SRC = \
+	main.c\
+	parse_conf.c\
 
 OBJ = $(SRC:%=$(OBJ_DIR)/%.o)
 

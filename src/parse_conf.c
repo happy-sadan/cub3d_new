@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   parse_conf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trcottam <trcottam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/02 21:47:22 by trcottam          #+#    #+#             */
-/*   Updated: 2021/01/04 03:05:20 by trcottam         ###   ########.fr       */
+/*   Created: 2021/01/03 11:23:11 by trcottam          #+#    #+#             */
+/*   Updated: 2021/01/04 02:44:38 by trcottam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "cub3d.h"
 
+bool	parse_conf(char *fn)
+{
+	int		fd;
 
-// THE FOLLOWING DEFINES MUST BE REMOVED AFTER HAVING ADDED ft_printf() AND
-// ft_fprintf() TO libft
-
-# define ft_printf printf
-# define ft_fprintf fprintf
-
-
-# include "libft.h"
-
-# include "fcntl.h"
-
-bool	parse_conf(char *fn);
-
-#endif
+	if (ft_memcmp(fn + ft_strlen(fn) - 4, ".cub", 4))
+		return (false);
+	fd = open(fn, O_RDONLY);
+	if (fd == -1)
+		return (false);
+	return (true);
+}
