@@ -6,7 +6,7 @@
 /*   By: trcottam <trcottam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 21:47:22 by trcottam          #+#    #+#             */
-/*   Updated: 2021/01/04 03:05:20 by trcottam         ###   ########.fr       */
+/*   Updated: 2021/01/05 11:17:28 by trcottam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,18 @@
 
 # include "fcntl.h"
 
-bool	parse_conf(char *fn);
+# define CONF_DELIM " \t"
+
+typedef struct	s_win {
+	int			width;
+	int			height;
+}				t_win;
+
+typedef struct	s_app{
+	t_win		win;
+}				t_app;
+
+bool			parse_conf(char *fn, t_app *app);
+bool			parse_conf_line(char *line, t_app *app);
 
 #endif
