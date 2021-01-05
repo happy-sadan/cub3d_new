@@ -6,7 +6,7 @@
 #    By: trcottam <trcottam@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 21:37:31 by trcottam          #+#    #+#              #
-#    Updated: 2021/01/05 00:36:42 by trcottam         ###   ########.fr        #
+#    Updated: 2021/01/05 23:45:17 by trcottam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ SRC = \
 	main.c\
 	parse_conf.c\
 	parse_conf_line.c\
+	parse_res.c\
+	parse_tex.c\
 
 OBJ = $(SRC:%=$(OBJ_DIR)/%.o)
 
@@ -27,7 +29,7 @@ MKDIR = mkdir -p
 RM = rm -fr
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -I. -Ilibft -Llibft -lft
+CFLAGS = -Wall -Werror -Wextra -I. -Ilibft -Llibft -lft -lmlx -lXext -lX11
 
 .PHONY:		all bonus clean fclean re
 

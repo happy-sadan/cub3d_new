@@ -6,7 +6,7 @@
 /*   By: trcottam <trcottam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 21:47:22 by trcottam          #+#    #+#             */
-/*   Updated: 2021/01/05 11:19:42 by trcottam         ###   ########.fr       */
+/*   Updated: 2021/01/06 00:23:10 by trcottam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,25 @@
 
 # include "libft.h"
 
+# include "mlx.h"
+
 # include "fcntl.h"
 
 # define CONF_DELIM " \t"
+
+typedef enum	e_tex_id {
+	TEX_NORTH,
+	TEX_EAST,
+	TEX_SOUTH,
+	TEX_WEST,
+	TEX_SPRITE,
+}				t_tex_id;
+
+typedef struct	s_img {
+	void		*p;
+	int			width;
+	int			height;
+}				t_img;
 
 typedef struct	s_win {
 	int			width;
@@ -33,10 +49,14 @@ typedef struct	s_win {
 }				t_win;
 
 typedef struct	s_app{
+	void		*mlx;
 	t_win		win;
+	t_img		tex[5];
 }				t_app;
 
 bool			parse_conf(char *fn, t_app *app);
 bool			parse_conf_line(char *line, t_app *app);
+bool			parse_res(char *param, t_app *app);
+bool			parse_tex(char *param, t_app *app);
 
 #endif
