@@ -6,7 +6,7 @@
 /*   By: trcottam <trcottam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 03:16:46 by trcottam          #+#    #+#             */
-/*   Updated: 2021/01/06 00:24:44 by trcottam         ###   ########.fr       */
+/*   Updated: 2021/01/06 00:42:07 by trcottam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ bool	parse_conf_line(char *line, t_app *app)
 	return (
 			!(param = ft_strtok(line, CONF_DELIM))
 			|| parse_res(param, app)
-			|| parse_tex(param, app));
+			|| parse_tex(param, app)
+			|| parse_color(param, app));
 }

@@ -6,7 +6,7 @@
 #    By: trcottam <trcottam@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 21:37:31 by trcottam          #+#    #+#              #
-#    Updated: 2021/01/05 23:45:17 by trcottam         ###   ########.fr        #
+#    Updated: 2021/01/06 00:55:07 by trcottam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC = \
 	parse_conf_line.c\
 	parse_res.c\
 	parse_tex.c\
+	parse_color.c\
 
 OBJ = $(SRC:%=$(OBJ_DIR)/%.o)
 
