@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_conf_line.c                                  :+:      :+:    :+:   */
+/*   init_conf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trcottam <trcottam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/04 03:16:46 by trcottam          #+#    #+#             */
-/*   Updated: 2021/01/07 01:02:13 by trcottam         ###   ########.fr       */
+/*   Created: 2021/01/06 21:04:11 by trcottam          #+#    #+#             */
+/*   Updated: 2021/01/07 00:38:48 by trcottam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	parse_conf_line(char *line)
+void	init_conf(void)
 {
-	char	*param;
+	int	i;
 
-	return (
-			!(param = ft_strtok(line, CONF_DELIM))
-			|| parse_res(param)
-			|| parse_tex(param)
-			|| parse_color(param));
+	g_conf.win.width = 0;
+	g_conf.win.height = 0;
+	g_conf.map = NULL;
+	g_conf.map_width = 0;
+	g_conf.map_height = 0;
+	i = 0;
+	while (i < 5)
+	{
+		g_conf.tex[i] = NULL;
+		i++;
+	}
+	i = 0;
+	while (i < 2)
+	{
+		g_conf.color[i] = NULL;
+		i++;
+	}
 }

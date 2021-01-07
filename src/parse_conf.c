@@ -6,30 +6,25 @@
 /*   By: trcottam <trcottam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 11:23:11 by trcottam          #+#    #+#             */
-/*   Updated: 2021/01/06 00:04:35 by trcottam         ###   ########.fr       */
+/*   Updated: 2021/01/07 01:59:19 by trcottam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	parse_conf(char *fn, t_app *app)
+bool	parse_conf(char *fn)
 {
 	int		fd;
-	char	*line;
-	int		gnl_return;
-	bool	line_parse_success;
+	t_list	*conf_lst;
+	t_list	*map_lst;
 
-	if (ft_memcmp(fn + ft_strlen(fn) - 4, ".cub", 4))
+	if (
+			ft_memcmp(fn + ft_strlen(fn) - 4, ".cub", 4)
+			|| (fd = open(fn, O_RDONLY)) == -1
+			|| !(conf_lst = get_conf_lst(fd))
+			|| !(map_lst = parse_conf_lst(conf_lst))
+			|| !(parse_map_lst(map_lst)))
 		return (false);
-	fd = open(fn, O_RDONLY);
-	if (fd == -1)
-		return (false);
-	while ((gnl_return = get_next_line(fd, &line)))
-	{
-		line_parse_success = parse_conf_line((char *)line, app);
-		free(line);
-		if (gnl_return == -1 || !line_parse_success)
-			return (false);
-	}
+	ft_lstclear(&conf_lst, &free);
 	return (true);
 }

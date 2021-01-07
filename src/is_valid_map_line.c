@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_conf_line.c                                  :+:      :+:    :+:   */
+/*   is_valid_map_line.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trcottam <trcottam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/04 03:16:46 by trcottam          #+#    #+#             */
-/*   Updated: 2021/01/07 01:02:13 by trcottam         ###   ########.fr       */
+/*   Created: 2021/01/06 18:05:33 by trcottam          #+#    #+#             */
+/*   Updated: 2021/01/06 20:56:24 by trcottam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	parse_conf_line(char *line)
+bool	is_valid_map_line(char *line)
 {
-	char	*param;
-
-	return (
-			!(param = ft_strtok(line, CONF_DELIM))
-			|| parse_res(param)
-			|| parse_tex(param)
-			|| parse_color(param));
+	while (*line == ' ')
+		line++;
+	if (!*line)
+		return (false);
+	while (*line && ft_strchr(" 012NSWE", *line))
+		line++;
+	return (!*line);
 }

@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_conf_line.c                                  :+:      :+:    :+:   */
+/*   parse_conf_lst.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trcottam <trcottam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/04 03:16:46 by trcottam          #+#    #+#             */
-/*   Updated: 2021/01/07 01:02:13 by trcottam         ###   ########.fr       */
+/*   Created: 2021/01/07 01:50:58 by trcottam          #+#    #+#             */
+/*   Updated: 2021/01/07 02:00:02 by trcottam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	parse_conf_line(char *line)
+t_list	*parse_conf_lst(t_list *lst)
 {
-	char	*param;
-
-	return (
-			!(param = ft_strtok(line, CONF_DELIM))
-			|| parse_res(param)
-			|| parse_tex(param)
-			|| parse_color(param));
+	while (lst && !is_valid_map_line(lst->data))
+	{
+		if (!(parse_conf_line(lst->data)))
+			return (false);
+		lst = lst->next;
+	}
+	return (lst);
 }

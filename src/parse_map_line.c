@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_conf_line.c                                  :+:      :+:    :+:   */
+/*   parse_map_line.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trcottam <trcottam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/04 03:16:46 by trcottam          #+#    #+#             */
-/*   Updated: 2021/01/07 01:02:13 by trcottam         ###   ########.fr       */
+/*   Created: 2021/01/06 10:22:50 by trcottam          #+#    #+#             */
+/*   Updated: 2021/01/06 20:32:32 by trcottam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	parse_conf_line(char *line)
+bool	parse_map_line(char *line)
 {
-	char	*param;
+	int			x;
+	static int	y;
 
-	return (
-			!(param = ft_strtok(line, CONF_DELIM))
-			|| parse_res(param)
-			|| parse_tex(param)
-			|| parse_color(param));
+	x = 0;
+	while (line[x])
+	{
+		if (ft_strchr(" 0", line[x]))
+			g_conf.map[x][y] = CEL_AIR;
+		else if (line[x] == '1')
+			g_conf.map[x][y] = CEL_WALL;
+		x++;
+	}
+	y++;
+	return (true);
 }

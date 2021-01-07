@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_conf_line.c                                  :+:      :+:    :+:   */
+/*   parse_map_lst.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trcottam <trcottam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/04 03:16:46 by trcottam          #+#    #+#             */
-/*   Updated: 2021/01/07 01:02:13 by trcottam         ###   ########.fr       */
+/*   Created: 2021/01/06 21:02:36 by trcottam          #+#    #+#             */
+/*   Updated: 2021/01/07 01:00:41 by trcottam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	parse_conf_line(char *line)
+bool	parse_map_lst(t_list *lst)
 {
-	char	*param;
+	t_list	*line;
 
-	return (
-			!(param = ft_strtok(line, CONF_DELIM))
-			|| parse_res(param)
-			|| parse_tex(param)
-			|| parse_color(param));
+	line = lst;
+	while (line)
+	{
+		if ((int)ft_strlen(line->data) > g_conf.map_width)
+			g_conf.map_width = ft_strlen(line->data);
+		g_conf.map_height++;
+		line = line->next;
+	}
+	if (!(init_map()))
+		return (false);
+	line = lst;
+	while (line)
+	{
+		if (!(parse_map_line(line->data)))
+			return (false);
+		line = line->next;
+	}
+	return (true);
 }

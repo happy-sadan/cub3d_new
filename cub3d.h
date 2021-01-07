@@ -6,7 +6,7 @@
 /*   By: trcottam <trcottam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 21:47:22 by trcottam          #+#    #+#             */
-/*   Updated: 2021/01/06 00:55:46 by trcottam         ###   ########.fr       */
+/*   Updated: 2021/01/07 01:55:03 by trcottam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ typedef enum	e_color_id {
 	COL_CEIL,
 }				t_color_id;
 
+typedef enum	e_cell_id {
+	CEL_AIR,
+	CEL_WALL,
+}				t_cell_id;
+
 typedef struct	s_color {
 	uint8_t	alpha;
 	uint8_t	red;
@@ -60,17 +65,29 @@ typedef struct	s_win {
 	int			height;
 }				t_win;
 
-typedef struct	s_app{
-	void		*mlx;
+typedef struct	s_conf{
 	t_win		win;
-	t_img		tex[5];
-	t_color		color[2];
-}				t_app;
+	int			**map;
+	int			map_width;
+	int			map_height;
+	t_img		*tex[5];
+	t_color		*color[2];
+}				t_conf;
 
-bool			parse_conf(char *fn, t_app *app);
-bool			parse_conf_line(char *line, t_app *app);
-bool			parse_res(char *param, t_app *app);
-bool			parse_tex(char *param, t_app *app);
-bool			parse_color(char *param, t_app *app);
+extern void		*g_mlx;
+extern t_conf	g_conf;
+
+bool			parse_conf(char *fn);
+bool			parse_conf_line(char *line);
+bool			parse_res(char *param);
+bool			parse_tex(char *param);
+bool			parse_color(char *param);
+bool			parse_map_line(char *line);
+bool			is_valid_map_line(char *line);
+bool			init_map(void);
+bool			parse_map_lst(t_list *lst);
+void			init_conf(void);
+t_list			*get_conf_lst(int fd);
+t_list			*parse_conf_lst(t_list *lst);
 
 #endif

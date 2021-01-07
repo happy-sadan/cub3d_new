@@ -6,7 +6,7 @@
 #    By: trcottam <trcottam@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 21:37:31 by trcottam          #+#    #+#              #
-#    Updated: 2021/01/06 00:55:07 by trcottam         ###   ########.fr        #
+#    Updated: 2021/01/07 01:54:36 by trcottam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,13 @@ SRC = \
 	parse_res.c\
 	parse_tex.c\
 	parse_color.c\
+	parse_map_line.c\
+	is_valid_map_line.c\
+	init_map.c\
+	parse_map_lst.c\
+	init_conf.c\
+	get_conf_lst.c\
+	parse_conf_lst.c\
 
 OBJ = $(SRC:%=$(OBJ_DIR)/%.o)
 
